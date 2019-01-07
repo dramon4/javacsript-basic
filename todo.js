@@ -23,7 +23,7 @@ function paintToDo(text) {
   toDos.push(toDoObj);
 }
 
-function handleSubmit(evet) {
+function handleSubmit(event) {
   event.preventDefault();
   const currentValue = toDoInput.value;
   paintToDo(currentValue);
