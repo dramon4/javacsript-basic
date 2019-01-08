@@ -5,6 +5,10 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 const TODOS_LS = "toDos";
 const toDos = []; //toDos = 할일 목록을 배열 값으로 선언 해준다.
 
+function saveToDos() {
+  localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); //JSON.stringify는 자바스크립트 object를 String으로 바꿔준다.
+}
+
 function paintToDo(text) {
   const li = document.createElement("li"); //html에서 li요소를 생성 해준다.
   const delBtn = document.createElement("button"); //
@@ -17,10 +21,11 @@ function paintToDo(text) {
   li.id = newId; //li에 id 값을 설정 : 삭제할떄 무엇을 삭제해야하는지 알기 위해서.
   toDoList.appendChild(li);
   const toDoObj = {
-    key: text,
+    text: text,
     id: newId
   };
   toDos.push(toDoObj);
+  saveToDos();
 }
 
 function handleSubmit(event) {
@@ -33,6 +38,10 @@ function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
   if (loadedToDos !== null) {
     //she is
+    const parsedToDos = JSON.parse(loadedToDos);
+    parsedToDos.forEach(function(toDo) {
+      paintToDo(toDo.text);
+    });
   }
 }
 
