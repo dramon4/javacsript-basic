@@ -3,6 +3,7 @@ const toDoForm = document.querySelector(".js-toDoForm"),
   toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "toDos";
+// const toDos = []; //toDos = 할일 목록을 배열 값으로 선언 해준다.
 let toDos = []; //toDos = 할일 목록을 배열 값으로 선언 해준다.
 
 // function filterFn(toDo) {
@@ -26,7 +27,6 @@ function deleteToDo(evnet) {
 function saveToDos() {
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); //JSON.stringify는 자바스크립트 object를 String으로 바꿔준다.
 }
-
 function paintToDo(text) {
   const li = document.createElement("li"); //html에서 li요소를 생성 해준다.
   const delBtn = document.createElement("button"); //
@@ -46,7 +46,6 @@ function paintToDo(text) {
   toDos.push(toDoObj);
   saveToDos();
 }
-
 function handleSubmit(event) {
   event.preventDefault();
   const currentValue = toDoInput.value;
@@ -63,7 +62,6 @@ function loadToDos() {
     });
   }
 }
-
 function init() {
   loadToDos();
   toDoForm.addEventListener("submit", handleSubmit);
